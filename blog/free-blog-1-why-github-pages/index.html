@@ -1,0 +1,1373 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="무료 블로그 플랫폼을 비교하고, 개발자가 GitHub Pages를 선택해야 하는 이유를 정리한다.">
+      
+      
+        <meta name="author" content="Mingi Choi">
+      
+      
+        <link rel="canonical" href="https://home301.dev/blog/free-blog-1-why-github-pages/">
+      
+      
+        <link rel="prev" href="../linux-gpu-cold-reboot/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>왜 GitHub Pages인가 — 무료 블로그 호스팅의 선택지 - Home301 Dev Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans KR";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-DTNKMZSB8M"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-DTNKMZSB8M",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-DTNKMZSB8M",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="왜 GitHub Pages인가 — 무료 블로그 호스팅의 선택지 - Home301 Dev Blog">
+  <meta property="og:description" content="무료 블로그 플랫폼을 비교하고, 개발자가 GitHub Pages를 선택해야 하는 이유를 정리한다.">
+  <meta property="og:url" content="https://home301.dev/blog/free-blog-1-why-github-pages/">
+  <meta property="og:site_name" content="Home301 Dev Blog">
+  <meta property="og:locale" content="ko_KR">
+  
+  <meta property="article:published_time" content="2026-03-23T00:00:00+09:00">
+  <meta property="article:author" content="Mingi Choi">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="왜 GitHub Pages인가 — 무료 블로그 호스팅의 선택지 - Home301 Dev Blog">
+  <meta name="twitter:description" content="무료 블로그 플랫폼을 비교하고, 개발자가 GitHub Pages를 선택해야 하는 이유를 정리한다.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://home301.dev/#website",
+        "url": "https://home301.dev/",
+        "name": "Home301 Dev Blog",
+        "alternateName": ["home301", "Home 301", "Home301 Dev", "home301.dev", "Home301 Dev Blog"],
+        "description": "AI, 개발, 게임 — 개발자의 기술 블로그",
+        "inLanguage": "ko-KR",
+        "publisher": {
+          "@id": "https://home301.dev/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://home301.dev/#organization",
+        "name": "home301",
+        "alternateName": ["Home301", "Home 301", "Home301 Dev", "Home301 Dev Blog"],
+        "url": "https://home301.dev/",
+        "sameAs": [
+          "https://github.com/home301"
+        ]
+      }
+    ]
+  }
+  </script>
+
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#github-pages" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../.." title="Home301 Dev Blog" class="md-header__button md-logo" aria-label="Home301 Dev Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Home301 Dev Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              왜 GitHub Pages인가 — 무료 블로그 호스팅의 선택지
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="다크 모드로 전환"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="다크 모드로 전환" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="라이트 모드로 전환"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="라이트 모드로 전환" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Home301 Dev Blog" class="md-nav__button md-logo" aria-label="Home301 Dev Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
+
+    </a>
+    Home301 Dev Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    아카이브
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    아카이브
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    카테고리
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    카테고리
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../category/ai%EA%B0%9C%EB%B0%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI/개발
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        블로그 플랫폼, 뭘 골라야 하나
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="블로그 플랫폼, 뭘 골라야 하나">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 티스토리
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. WordPress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-netlify-vercel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Netlify / Vercel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        한눈에 비교
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-pages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        왜 GitHub Pages인가
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usernamegithubio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        도메인 구조: username.github.io
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="도메인 구조: username.github.io">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        커스텀 도메인은 언제 필요한가
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정적 사이트 생성기: 뭘 써야 하나
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="정적 사이트 생성기: 뭘 써야 하나">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jekyll" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jekyll
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hugo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hugo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MkDocs Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        다음 편 예고
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        참고 자료
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Index로 돌아가기
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    메타데이터
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-03-23 00:00:00+00:00" class="md-ellipsis">2026년 3월 23일</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            카테고리
+                            
+                              <a href="../category/ai%EA%B0%9C%EB%B0%9C/">AI/개발</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              읽는시간 4분
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">blog</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">free-hosting</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">github-pages</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">mkdocs</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="github-pages">왜 GitHub Pages인가 — 무료 블로그 호스팅의 선택지<a class="headerlink" href="#github-pages" title="Permanent link">#</a></h1>
+<blockquote>
+<p>블로그를 만들고 싶지만 호스팅 비용은 들이고 싶지 않은 개발자를 위한 선택 가이드.</p>
+</blockquote>
+<!-- more -->
+
+<hr />
+<p>이 글은 <strong>무료로 기술 블로그 만들기</strong> 시리즈의 첫 번째 편이다.</p>
+<table>
+<thead>
+<tr>
+<th>편</th>
+<th>제목</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td><strong>왜 GitHub Pages인가 — 무료 블로그 호스팅의 선택지</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>MkDocs Material 설치부터 첫 글 배포까지</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GitHub Actions로 자동 빌드/배포 파이프라인 구축하기</td>
+</tr>
+<tr>
+<td>4</td>
+<td>커스텀 도메인 연결하기 — Cloudflare + GitHub Pages</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SEO와 분석 도구 연동 — 검색에 노출되는 블로그</td>
+</tr>
+<tr>
+<td>6</td>
+<td>상용화 준비 — 저작권, 개인정보처리방침, AdSense</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_1">블로그 플랫폼, 뭘 골라야 하나<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p>기술 블로그를 시작하려면 가장 먼저 "어디에 글을 올릴 것인가"를 정해야 한다. 선택지는 크게 네 가지로 나뉜다.</p>
+<h3 id="1">1. 티스토리<a class="headerlink" href="#1" title="Permanent link">#</a></h3>
+<p>국내 개발자들이 가장 많이 쓰는 블로그 플랫폼이다. 카카오에서 운영하며, 가입 즉시 글을 쓸 수 있다.</p>
+<p><strong>장점</strong></p>
+<ul>
+<li>진입장벽이 낮다. 가입하고 바로 글을 쓸 수 있다.</li>
+<li>네이버 검색 노출이 잘 된다.</li>
+<li>AdSense 연동이 비교적 쉽다.</li>
+</ul>
+<p><strong>단점</strong></p>
+<ul>
+<li>마크다운 지원이 불완전하다. 코드 블록 렌더링이 특히 아쉽다.</li>
+<li>플랫폼 종속성이 강하다. 티스토리가 서비스를 변경하거나 종료하면 대응이 어렵다.</li>
+<li>디자인 자유도가 제한적이다. 스킨을 직접 만들지 않는 한 비슷한 모양새가 된다.</li>
+<li>글의 소유권이 온전히 내 것이 아니다. 약관에 따라 콘텐츠 사용 권한이 플랫폼에 있다.</li>
+</ul>
+<h3 id="2-wordpress">2. WordPress<a class="headerlink" href="#2-wordpress" title="Permanent link">#</a></h3>
+<p>전 세계에서 가장 많이 쓰이는 CMS다. WordPress.com(호스팅형)과 WordPress.org(설치형)으로 나뉜다.</p>
+<p><strong>장점</strong></p>
+<ul>
+<li>플러그인 생태계가 방대하다. 원하는 기능 대부분을 플러그인으로 해결할 수 있다.</li>
+<li>테마 선택지가 많다.</li>
+<li>SEO 플러그인(Yoast 등)이 강력하다.</li>
+</ul>
+<p><strong>단점</strong></p>
+<ul>
+<li>무료로 쓰려면 WordPress.com의 제한된 플랜을 써야 한다. 커스텀 도메인, 플러그인 사용 등이 막혀 있다.</li>
+<li>설치형은 서버가 필요하다. 호스팅 비용이 월 최소 5,000~10,000원 수준.</li>
+<li>관리 부담이 있다. 업데이트, 보안 패치, 백업을 직접 챙겨야 한다.</li>
+<li>개발자에게 마크다운 중심 워크플로우가 아니다. 에디터가 WYSIWYG 기반이라 코드 중심 글 작성에 불편하다.</li>
+</ul>
+<h3 id="3-netlify-vercel">3. Netlify / Vercel<a class="headerlink" href="#3-netlify-vercel" title="Permanent link">#</a></h3>
+<p>정적 사이트 호스팅 서비스다. Git 저장소와 연결하면 push할 때마다 자동 빌드·배포된다.</p>
+<p><strong>장점</strong></p>
+<ul>
+<li>빌드·배포 파이프라인이 내장되어 있다. CI/CD 설정이 간단하다.</li>
+<li>무료 플랜으로도 충분히 쓸 수 있다.</li>
+<li>커스텀 도메인, HTTPS를 무료로 제공한다.</li>
+<li>프리뷰 배포 기능이 있다. PR을 올리면 미리보기 URL이 생긴다.</li>
+</ul>
+<p><strong>단점</strong></p>
+<ul>
+<li>빌드 시간 제한이 있다. Netlify 무료 플랜은 월 300분, Vercel은 월 6,000분이다.</li>
+<li>플랫폼에 의존하게 된다. 서비스 정책이 변경되면 영향을 받는다.</li>
+<li>GitHub Pages만으로 충분한 경우가 많다. 블로그 수준의 정적 사이트에 Netlify/Vercel의 고급 기능이 필요한 경우는 드물다.</li>
+</ul>
+<h3 id="4-github-pages">4. GitHub Pages<a class="headerlink" href="#4-github-pages" title="Permanent link">#</a></h3>
+<p>GitHub 저장소에서 직접 정적 사이트를 호스팅하는 서비스다. 이 블로그가 사용하는 방식이기도 하다.</p>
+<p><strong>장점</strong></p>
+<ul>
+<li>완전 무료다. 호스팅 비용이 0원이다.</li>
+<li>GitHub 저장소가 곧 블로그다. 버전 관리, 이슈 트래킹, PR 기반 협업이 자연스럽다.</li>
+<li>마크다운으로 글을 쓴다. 개발자에게 가장 익숙한 포맷이다.</li>
+<li>글이 곧 Git 히스토리다. 언제 뭘 수정했는지 추적할 수 있다.</li>
+<li>이전이 쉽다. 파일 기반이라 다른 플랫폼으로 옮기기 간단하다.</li>
+</ul>
+<p><strong>단점</strong></p>
+<ul>
+<li>정적 사이트만 가능하다. 서버 사이드 로직이 필요하면 쓸 수 없다.</li>
+<li>초기 설정에 시간이 든다. Jekyll, Hugo, MkDocs 같은 정적 사이트 생성기를 골라야 하고, 빌드·배포 파이프라인도 직접 구성해야 한다.</li>
+<li>Git과 CLI에 익숙하지 않으면 진입장벽이 있다.</li>
+<li>저장소 용량 제한이 있다. 권장 1GB, 사이트 크기 1GB, 대역폭 월 100GB.</li>
+</ul>
+<hr />
+<h2 id="_2">한눈에 비교<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>티스토리</th>
+<th>WordPress(설치형)</th>
+<th>Netlify/Vercel</th>
+<th>GitHub Pages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>비용</td>
+<td>무료</td>
+<td>월 5,000원~</td>
+<td>무료(제한)</td>
+<td>무료</td>
+</tr>
+<tr>
+<td>마크다운</td>
+<td>부분 지원</td>
+<td>플러그인 필요</td>
+<td>완전 지원</td>
+<td>완전 지원</td>
+</tr>
+<tr>
+<td>커스텀 도메인</td>
+<td>가능</td>
+<td>가능</td>
+<td>가능</td>
+<td>가능</td>
+</tr>
+<tr>
+<td>버전 관리</td>
+<td>없음</td>
+<td>플러그인 필요</td>
+<td>Git 기반</td>
+<td>Git 기반</td>
+</tr>
+<tr>
+<td>서버 관리</td>
+<td>불필요</td>
+<td>필요</td>
+<td>불필요</td>
+<td>불필요</td>
+</tr>
+<tr>
+<td>이전 용이성</td>
+<td>낮음</td>
+<td>중간</td>
+<td>높음</td>
+<td>높음</td>
+</tr>
+<tr>
+<td>초기 설정</td>
+<td>쉬움</td>
+<td>보통</td>
+<td>보통</td>
+<td>어려움</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="github-pages_1">왜 GitHub Pages인가<a class="headerlink" href="#github-pages_1" title="Permanent link">#</a></h2>
+<p>이 블로그는 GitHub Pages를 선택했다. 이유는 단순하다.</p>
+<p><strong>1. 비용이 0원이다.</strong> 도메인을 사지 않으면 정말로 돈이 한 푼도 들지 않는다. 호스팅, SSL, CDN 전부 GitHub가 제공한다.</p>
+<p><strong>2. 개발자의 워크플로우에 자연스럽게 녹아든다.</strong> 글을 마크다운으로 쓰고, Git으로 관리하고, PR로 리뷰하고, push하면 배포된다. 별도의 관리 도구를 익힐 필요가 없다.</p>
+<p><strong>3. 글이 내 것이다.</strong> 로컬 파일시스템에 마크다운 파일로 존재한다. 플랫폼이 망해도 파일은 내 컴퓨터에 있다. 다른 정적 사이트 생성기로 바꾸거나, 아예 다른 호스팅으로 옮기는 것도 간단하다.</p>
+<p><strong>4. 초기 설정의 어려움은 이 시리즈에서 해결한다.</strong> GitHub Pages의 유일한 단점인 초기 설정을 이 시리즈 6편에 걸쳐 하나씩 풀어나간다.</p>
+<hr />
+<h2 id="usernamegithubio">도메인 구조: username.github.io<a class="headerlink" href="#usernamegithubio" title="Permanent link">#</a></h2>
+<p>GitHub Pages의 기본 도메인은 <code>username.github.io</code> 형태다.</p>
+<ul>
+<li><strong>User/Organization 사이트</strong>: <code>username.github.io</code> 이름의 저장소를 만들면 <code>https://username.github.io</code>로 접근할 수 있다.</li>
+<li><strong>Project 사이트</strong>: 일반 저장소에서 GitHub Pages를 활성화하면 <code>https://username.github.io/repo-name/</code>으로 접근한다.</li>
+</ul>
+<p>개인 블로그라면 User 사이트를 쓰는 게 자연스럽다. Organization 계정이라면 <code>orgname.github.io</code>가 된다.</p>
+<h3 id="_3">커스텀 도메인은 언제 필요한가<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<p>결론부터 말하면, <strong>처음에는 필요 없다.</strong></p>
+<p><code>username.github.io</code>만으로도 블로그 운영에 아무 문제가 없다. 커스텀 도메인이 필요해지는 시점은 다음과 같다.</p>
+<ul>
+<li><strong>AdSense를 붙이고 싶을 때.</strong> Google AdSense는 <code>github.io</code> 하위 도메인으로는 승인이 안 된다.</li>
+<li><strong>브랜딩이 필요할 때.</strong> 도메인 자체가 이름이 되는 경우. 예를 들어 <code>home301.dev</code>는 "home301"이라는 브랜드를 담고 있다.</li>
+<li><strong>이메일 주소를 만들고 싶을 때.</strong> 커스텀 도메인이 있으면 <code>@yourdomain.dev</code> 형태의 이메일을 만들 수 있다.</li>
+</ul>
+<p>도메인 가격은 <code>.dev</code>가 연 약 12달러(약 16,000원), <code>.com</code>이 연 약 10달러 수준이다. 나중에 필요해지면 그때 연결하면 된다. 4편에서 자세히 다룬다.</p>
+<hr />
+<h2 id="_4">정적 사이트 생성기: 뭘 써야 하나<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<p>GitHub Pages는 정적 사이트를 호스팅할 뿐이다. HTML, CSS, JS 파일을 직접 만들어도 되지만, 현실적으로는 정적 사이트 생성기(Static Site Generator, SSG)를 쓴다. 마크다운 파일을 넣으면 완성된 사이트를 뱉어주는 도구다.</p>
+<p>대표적인 선택지 세 가지를 비교한다.</p>
+<h3 id="jekyll">Jekyll<a class="headerlink" href="#jekyll" title="Permanent link">#</a></h3>
+<ul>
+<li>GitHub Pages의 공식 지원 SSG다. 저장소에 올리면 별도 빌드 설정 없이 자동으로 사이트가 생성된다.</li>
+<li>Ruby 기반이라 로컬 개발 환경 구성이 번거롭다.</li>
+<li>빌드 속도가 느린 편이다. 글이 많아지면 체감할 수 있다.</li>
+<li>테마와 플러그인이 많지만, 최신 웹 트렌드를 따라가지 못하는 경우가 있다.</li>
+</ul>
+<h3 id="hugo">Hugo<a class="headerlink" href="#hugo" title="Permanent link">#</a></h3>
+<ul>
+<li>Go 기반으로 빌드 속도가 매우 빠르다. 수천 페이지도 수 초 안에 빌드된다.</li>
+<li>테마 품질이 고르지 않다. 좋은 테마를 찾으면 만족스럽지만, 커스터마이징에 시간이 들 수 있다.</li>
+<li>템플릿 문법이 Go 특유의 방식이라 익숙해지는 데 시간이 걸린다.</li>
+</ul>
+<h3 id="mkdocs-material">MkDocs Material<a class="headerlink" href="#mkdocs-material" title="Permanent link">#</a></h3>
+<ul>
+<li>Python 기반의 MkDocs에 Material 테마를 얹은 조합이다.</li>
+<li><strong>기술 문서 작성에 최적화되어 있다.</strong> 코드 하이라이팅, 탭, admonition, 검색 등 개발 블로그에 필요한 기능이 기본으로 들어 있다.</li>
+<li>설정이 단순하다. <code>mkdocs.yml</code> 하나로 사이트 전체를 제어한다.</li>
+<li>블로그 플러그인을 내장하고 있어, 날짜 기반 글 목록과 카테고리 분류가 자동으로 된다.</li>
+<li>디자인이 깔끔하고 일관성 있다. 별도의 테마 탐색이 필요 없다.</li>
+<li>Python 환경만 있으면 <code>pip install mkdocs-material</code> 한 줄로 설치 끝이다.</li>
+</ul>
+<p>이 블로그는 <strong>MkDocs Material</strong>을 쓴다. 기술 블로그에 필요한 기능이 거의 다 내장되어 있고, 설정이 단순하며, 디자인이 깔끔하기 때문이다. 2편에서 설치와 설정을 다룬다.</p>
+<hr />
+<h2 id="_5">다음 편 예고<a class="headerlink" href="#_5" title="Permanent link">#</a></h2>
+<p>2편에서는 MkDocs Material을 설치하고, 프로젝트 구조를 잡고, 첫 글을 배포하는 과정을 다룬다. Python 환경 준비부터 <code>mkdocs serve</code>로 로컬 미리보기까지, 실제로 따라 하면서 블로그를 만들어본다.</p>
+<hr />
+<h2 id="_6">참고 자료<a class="headerlink" href="#_6" title="Permanent link">#</a></h2>
+<ul>
+<li><a href="https://docs.github.com/pages">GitHub Pages 공식 문서</a></li>
+<li><a href="https://squidfunk.github.io/mkdocs-material/">MkDocs Material 공식 사이트</a></li>
+<li><a href="https://jekyllrb.com/">Jekyll 공식 사이트</a></li>
+<li><a href="https://gohugo.io/">Hugo 공식 사이트</a></li>
+<li><a href="https://www.netlify.com/">Netlify 공식 사이트</a></li>
+<li><a href="https://vercel.com/">Vercel 공식 사이트</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="하단/푸터" >
+        
+          
+          <a href="../linux-gpu-cold-reboot/" class="md-footer__link md-footer__link--prev" aria-label="이전: Linux에서 GPU 크래시 후 자동 복구를 시도하다 — rtcwake 콜드부팅의 한계">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                이전
+              </span>
+              <div class="md-ellipsis">
+                Linux에서 GPU 크래시 후 자동 복구를 시도하다 — rtcwake 콜드부팅의 한계
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020-2026 home301 | <a href="/privacy/">개인정보처리방침</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/home301" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
