@@ -107,9 +107,9 @@ Google에서 운영하는 무료 블로그 서비스다. 2003년부터 이어져
 - 마크다운을 기본 지원하지 않는다. HTML 에디터를 직접 써야 한다.
 - 기능 업데이트가 느리다. Google이 적극적으로 투자하는 서비스가 아니다.
 
-### 5. [Netlify](https://www.netlify.com/) / [Vercel](https://vercel.com/)
+### 5. [Netlify](https://www.netlify.com/) / [Vercel](https://vercel.com/) / [AppPaaS](https://apppaas.com/)
 
-정적 사이트 호스팅 서비스다. Git 저장소와 연결하면 push할 때마다 자동 빌드·배포된다.
+클라우드 호스팅 서비스다. Git 저장소와 연결하면 push할 때마다 자동 빌드·배포된다. Netlify와 Vercel은 정적 사이트에 특화되어 있고, AppPaaS는 프론트엔드와 백엔드를 모두 지원하는 범용 PaaS다.
 
 **장점**
 
@@ -117,12 +117,13 @@ Google에서 운영하는 무료 블로그 서비스다. 2003년부터 이어져
 - 무료 플랜으로도 충분히 쓸 수 있다.
 - 커스텀 도메인, HTTPS를 무료로 제공한다.
 - 프리뷰 배포 기능이 있다. PR을 올리면 미리보기 URL이 생긴다.
+- AppPaaS는 복잡한 인프라 설정 없이 코드만 연결하면 서버 생성부터 배포까지 자동 처리된다.
 
 **단점**
 
 - 빌드 시간 제한이 있다. Netlify 무료 플랜은 월 300분, Vercel은 월 6,000분이다.
 - 플랫폼에 의존하게 된다. 서비스 정책이 변경되면 영향을 받는다.
-- GitHub Pages만으로 충분한 경우가 많다. 블로그 수준의 정적 사이트에 Netlify/Vercel의 고급 기능이 필요한 경우는 드물다.
+- GitHub Pages만으로 충분한 경우가 많다. 블로그 수준의 정적 사이트에 이들의 고급 기능이 필요한 경우는 드물다.
 
 ### 6. [GitHub Pages](https://pages.github.com/)
 
@@ -146,7 +147,7 @@ GitHub 저장소에서 직접 정적 사이트를 호스팅하는 서비스다. 
 
 ## 한눈에 비교
 
-| 항목 | 네이버 블로그 | 티스토리 | WordPress(설치형) | Google Blogger | Netlify/Vercel | GitHub Pages |
+| 항목 | 네이버 블로그 | 티스토리 | WordPress(설치형) | Google Blogger | Netlify/Vercel/AppPaaS | GitHub Pages |
 |------|-------------|---------|------------------|---------------|---------------|-------------|
 | 비용 | 무료 | 무료 | 월 5,000원~ | 무료 | 무료(제한) | 무료 |
 | 마크다운 | 미지원 | 부분 지원 | 플러그인 필요 | 미지원 | 완전 지원 | 완전 지원 |
@@ -257,3 +258,4 @@ GitHub Pages는 정적 사이트를 호스팅할 뿐이다. HTML, CSS, JS 파일
 - [Hugo 공식 사이트](https://gohugo.io/)
 - [Netlify 공식 사이트](https://www.netlify.com/)
 - [Vercel 공식 사이트](https://vercel.com/)
+- [AppPaaS 공식 사이트](https://apppaas.com/)
