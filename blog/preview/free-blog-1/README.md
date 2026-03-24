@@ -37,9 +37,9 @@ description: "무료 블로그 플랫폼을 비교하고, GitHub Pages를 선택
 
 블로그를 시작하려면 가장 먼저 "어디에 글을 올릴 것인가"를 정해야 한다. 선택지는 크게 네 가지로 나뉜다.
 
-### 1. 티스토리
+### 1. [티스토리](https://www.tistory.com/)
 
-국내 개발자들이 가장 많이 쓰는 블로그 플랫폼이다. 카카오에서 운영하며, 가입 즉시 글을 쓸 수 있다.
+국내에서 가장 많이 쓰는 블로그 플랫폼 중 하나다. 카카오에서 운영하며, 가입 즉시 글을 쓸 수 있다.
 
 **장점**
 
@@ -54,9 +54,9 @@ description: "무료 블로그 플랫폼을 비교하고, GitHub Pages를 선택
 - 디자인 자유도가 제한적이다. 스킨을 직접 만들지 않는 한 비슷한 모양새가 된다.
 - 글의 소유권이 온전히 내 것이 아니다. 약관에 따라 콘텐츠 사용 권한이 플랫폼에 있다.
 
-### 2. WordPress
+### 2. [WordPress](https://wordpress.org/)
 
-전 세계에서 가장 많이 쓰이는 CMS다. WordPress.com(호스팅형)과 WordPress.org(설치형)으로 나뉜다.
+전 세계에서 가장 많이 쓰이는 CMS다. [WordPress.com](https://wordpress.com/)(호스팅형)과 [WordPress.org](https://wordpress.org/)(설치형)으로 나뉜다.
 
 **장점**
 
@@ -71,7 +71,7 @@ description: "무료 블로그 플랫폼을 비교하고, GitHub Pages를 선택
 - 관리 부담이 있다. 업데이트, 보안 패치, 백업을 직접 챙겨야 한다.
 - 마크다운 중심 워크플로우가 아니다. 에디터가 WYSIWYG 기반이라 텍스트 기반 글 작성에는 불편할 수 있다.
 
-### 3. Netlify / Vercel
+### 3. [Netlify](https://www.netlify.com/) / [Vercel](https://vercel.com/)
 
 정적 사이트 호스팅 서비스다. Git 저장소와 연결하면 push할 때마다 자동 빌드·배포된다.
 
@@ -88,7 +88,7 @@ description: "무료 블로그 플랫폼을 비교하고, GitHub Pages를 선택
 - 플랫폼에 의존하게 된다. 서비스 정책이 변경되면 영향을 받는다.
 - GitHub Pages만으로 충분한 경우가 많다. 블로그 수준의 정적 사이트에 Netlify/Vercel의 고급 기능이 필요한 경우는 드물다.
 
-### 4. GitHub Pages
+### 4. [GitHub Pages](https://pages.github.com/)
 
 GitHub 저장소에서 직접 정적 사이트를 호스팅하는 서비스다. 이 블로그가 사용하는 방식이기도 하다.
 
