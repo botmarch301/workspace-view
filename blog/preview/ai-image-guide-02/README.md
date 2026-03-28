@@ -8,13 +8,13 @@
 
 1화에서 txt2img의 한계를 확인했다. 프롬프트만으로는 원하는 포즈를 잡을 수 없다. "팔을 들어올린 여성"이라고 써도, 모델이 해석하는 방법은 수십 가지다. 팔이 어디에 있는지, 몸이 어느 방향을 향하는지, 카메라 앵글은 어떤지 — 전부 운에 맡기게 된다.
 
-아래는 같은 프롬프트로 ControlNet 없이 생성한 결과(왼쪽)와, 참조 포즈를 OpenPose ControlNet으로 제어한 결과(오른쪽)의 차이다.
+왼쪽은 원하는 포즈가 담긴 참조 사진이다. 가운데는 같은 프롬프트로 ControlNet 없이 생성한 결과 — 포즈를 제어할 수 없다. 오른쪽은 참조 사진의 포즈를 OpenPose ControlNet으로 지정한 결과다.
 
-| txt2img (ControlNet 없음) | 참조 사진 | OpenPose 결과 |
+| 참조 사진 (원하는 포즈) | txt2img (포즈 제어 불가) | OpenPose ControlNet (포즈 제어) |
 |:---:|:---:|:---:|
-| ![txt2img](images/result_txt2img.png) | ![reference](images/reference.jpg) | ![openpose](images/result_openpose.png) |
+| ![reference](images/reference.jpg) | ![txt2img](images/result_txt2img.png) | ![openpose](images/result_openpose.png) |
 
-ControlNet은 이 문제를 해결한다. 참조 이미지에서 포즈, 윤곽선, 깊이 정보를 추출하고, 그 구조를 유지한 채 새로운 이미지를 생성한다. 프롬프트가 "무엇을"이라면, ControlNet은 "어떻게"를 지정하는 도구다.
+ControlNet은 이 문제를 해결한다. 참조 사진에서 포즈 정보를 추출하고, 그 포즈를 유지한 채 새로운 이미지를 생성한다. 참조 이미지에서 포즈, 윤곽선, 깊이 정보를 추출하고, 그 구조를 유지한 채 새로운 이미지를 생성한다. 프롬프트가 "무엇을"이라면, ControlNet은 "어떻게"를 지정하는 도구다.
 
 
 ## ControlNet이란
