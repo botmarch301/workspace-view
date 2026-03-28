@@ -23,23 +23,23 @@
 
 ## 선별된 도구 (8개)
 
-### 대중화 도구 (5개)
+### 대중화 도구 (5개) — 하네스 역할을 수행하는 대형 도구 포함
 
 | # | 이름 | URL | Stars | 요약 | 선별 이유 |
 |---|------|-----|-------|------|----------|
-| 1 | harness-engineering-playbook | https://github.com/lipingtababa/harness-engineering-playbook | 42 | 팀 환경에서 AI agent와 품질 소프트웨어를 출하하기 위한 실전 프레임워크. 결정론적 smoke/test/lint 하네스 커맨드와 아키텍처 경계 강제. | OpenAI 하네스 엔지니어링 원칙을 가장 체계적으로 Playbook 형태로 정리. 팀 환경 고려가 독특. |
-| 2 | entrix | https://github.com/phodal/entrix | 31 | 품질 규칙, 아키텍처 제약, 검증 단계를 실행 가능한 가드레일로 변환하는 하네스 엔지니어링 도구. CLI + Claude Code 플러그인. | 유일하게 "규칙을 실행 가능한 가드레일로 변환"하는 도구. tier별 검증(fast/normal/deep), 변경 인식 검증, 리뷰 트리거 등 기계적 강제 메커니즘 보유. |
-| 3 | deepklarity/harness-kit | https://github.com/deepklarity/harness-kit | 29 | AI agent와의 작업을 위한 키트. 오케스트레이션뿐 아니라 그 주변의 엔지니어링 패턴까지 포함. TDD 우선 실행, 구조화된 디버깅, 지식 축적, 비용 인식 위임. | 칸반 보드 + DAG 기반 태스크 분해 + 다중 agent 실행을 시각적으로 제공. "각 실행이 다음 실행을 개선한다"는 복합 성장 패턴. |
-| 4 | andrew-yangy/gru-ai | https://github.com/andrew-yangy/gru-ai | 108 | 1인 회사를 위한 자율 AI 에이전트 팀. 컨텍스트 엔지니어링 + 하네스 엔지니어링으로 브레인스토밍부터 배포까지 파이프라인 구동. | "CEO처럼 지시하면 agent 팀이 실행" 패턴. 엔지니어링 외에 마케팅/운영까지 포괄하는 멀티 에이전트 오케스트레이션. 컨텍스트 트리 기반 지식 축적. |
-| 5 | jrenaldi79/harness-engineering | https://github.com/jrenaldi79/harness-engineering | 47 | 코딩 에이전트를 위한 컨텍스트 엔지니어링. CLAUDE.md 템플릿, 기계적 강제(git hooks, pre-commit), 20+ 베스트 프랙티스 필드 가이드. | "agent는 지시를 듣지 않는다"는 전제에서 출발. git hooks, pre-commit으로 기계적 강제를 구현하는 실전적 접근. Andrej Karpathy 인용이 핵심 동기. |
+| 1 | Spec Kit (GitHub) | https://github.com/github/spec-kit | 83,000+ | 스펙 주도 개발 CLI 툴킷. constitution → specify → plan → build 단계. | 최대 에코시스템. constitution이 하네스의 "제약 주입" 역할 수행. 20+ 에이전트 지원. |
+| 2 | BMAD-METHOD | https://github.com/bmad-code-org/BMAD-METHOD | 42,600+ | AI 에이전트 기반 애자일 개발 프레임워크. 12+ 전문 페르소나. | 관심사 분리를 에이전트 레벨에서 구현. TEA(테스트 아키텍트)가 독립 검증 계층 제공. |
+| 3 | OpenSpec (Fission-AI) | https://github.com/Fission-AI/OpenSpec | 35,000+ | 경량 스펙 프레임워크. change 단위 격리. | brownfield에 가장 강함. change 단위 격리가 컨텍스트 오염 방지에 효과적. |
+| 4 | Hive (Aden) | https://github.com/aden-hive/hive | 9,900+ | 목표 주도 에이전트 프레임워크 + 런타임 하네스. YC 투자. | 자기 개선 루프 내장. 메타 하네스 (목표 → 에이전트 시스템 자동 생성). |
+| 5 | Kiro (AWS) | https://github.com/kirodotdev/Kiro | 3,300+ | 스펙 주도 에이전틱 IDE. Steering + Hooks. | IDE 안에서 L1~L4 완결. Hooks가 가장 강력한 자동 피드백 루프 메커니즘. |
 
-### 주시 도구 (3개)
+### 주시 도구 (3개) — 하네스 전용, 독특한 관점
 
 | # | 이름 | URL | Stars | 요약 | 선별 이유 |
 |---|------|-----|-------|------|----------|
-| 6 | markmishaev76/ai-harness-scorecard | https://github.com/markmishaev76/ai-harness-scorecard | 14 | 리포지토리의 엔지니어링 세이프가드를 등급화하는 평가 도구. DORA 2025, OpenAI Harness Engineering, SlopCodeBench, Kent Beck 기반. | "agent가 여기서 만들 코드가 신뢰 가능한가?"라는 독특한 관점. 5개 카테고리 31개 체크로 정량 평가. 기존 도구가 "만드는 것"에 집중할 때 유일하게 "측정"에 집중. |
-| 7 | WellDunDun/reins | https://github.com/WellDunDun/reins | 6 | Harness Engineering CLI. scaffold, audit, evolve, doctor로 리포의 agent 준비도를 관리. OpenAI 방법론의 도구화. | "OpenAI가 방법론을 발표했고, 우리는 도구를 만들었다"는 명확한 포지셔닝. scaffold → audit → evolve → doctor 4단계 CLI로 하네스 성숙도를 점진적으로 높이는 접근. 의존성 0개. |
-| 8 | SuperagenticAI/superqode | https://github.com/SuperagenticAI/superqode | 7 | Agent-Native 코딩 하네스. 품질 중심 에이전틱 소프트웨어 개발. "agent가 코드를 깨뜨리게 놔두고, 수정을 증명하고, 확신을 갖고 출하한다." | "깨뜨리기 → 증명하기 → 출하하기" 패턴이 독특. 품질 엔지니어링 관점에서 하네스를 접근하는 유일한 도구. |
+| 6 | Entrix | https://github.com/phodal/entrix | 31 | 품질 규칙을 실행 가능한 가드레일로 변환. tier별 검증(fast/normal/deep). | 기계적 강제를 가장 직접적으로 구현. L2~L4를 단일 도구로 커버하는 유일한 사례. |
+| 7 | AI Harness Scorecard | https://github.com/markmishaev76/ai-harness-scorecard | 14 | 리포의 하네스 수준을 A~F로 정량 평가. 31개 체크, 연구 기반. | "하네스를 측정하는" 유일한 도구. DORA 2025 + OpenAI + SlopCodeBench 근거. |
+| 8 | Reins | https://github.com/WellDunDun/reins | 6 | scaffold → audit → evolve → doctor 4단계 CLI. 의존성 0개. | "방법론을 도구로" 변환. brownfield 즉시 적용. 점진적 하네스 도입에 최적. |
 
 ---
 
