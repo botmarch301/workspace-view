@@ -120,9 +120,25 @@ def get_staged_files():
     return [f.strip() for f in result.stdout.strip().split("\n") if f.strip()]
 
 
+def expand_brace_pattern(pattern):
+    """brace expansion을 수행한다. 예: **/*.{py,js} → [**/*.py, **/*.js]"""
+    import re as _re
+    match = _re.search(r'\{([^}]+)\}', pattern)
+    if not match:
+        return [pattern]
+    prefix = pattern[:match.start()]
+    suffix = pattern[match.end():]
+    alternatives = match.group(1).split(',')
+    result = []
+    for alt in alternatives:
+        expanded = prefix + alt.strip() + suffix
+        result.extend(expand_brace_pattern(expanded))  # 재귀 (중첩 brace)
+    return result
+
+
 def matches_scope(filepath, scope):
     """파일이 constraint의 scope에 해당하는지 확인한다."""
-    from fnmatch import fnmatch
+    from pathlib import PurePath
 
     files_pattern = scope.get("files", "**/*")
     exclude = scope.get("exclude", [])
@@ -130,14 +146,24 @@ def matches_scope(filepath, scope):
     if isinstance(files_pattern, str):
         files_pattern = [files_pattern]
 
+    # brace expansion
+    expanded_patterns = []
+    for p in files_pattern:
+        expanded_patterns.extend(expand_brace_pattern(p))
+
+    expanded_exclude = []
+    for p in exclude:
+        expanded_exclude.extend(expand_brace_pattern(p))
+
     # exclude 확인
-    for exc_pattern in exclude:
-        if fnmatch(filepath, exc_pattern):
+    fp = PurePath(filepath)
+    for exc_pattern in expanded_exclude:
+        if fp.match(exc_pattern):
             return False
 
     # files 패턴 확인
-    for pattern in files_pattern:
-        if fnmatch(filepath, pattern):
+    for pattern in expanded_patterns:
+        if fp.match(pattern):
             return True
 
     return False
@@ -159,13 +185,13 @@ def is_excepted(constraint_id, filepath, line, exceptions):
 
 
 def check_regex(filepath, patterns, exceptions, constraint_id):
-    """regex 기반 검증을 수행한다."""
+    """regex 기반 검증을 수행한다. 대소문자 구분 없이 매칭."""
     violations = []
     try:
         with open(filepath, "r", errors="ignore") as f:
             for line_num, line_content in enumerate(f, 1):
                 for pattern in patterns:
-                    if re.search(pattern, line_content):
+                    if re.search(pattern, line_content, re.IGNORECASE):
                         if not is_excepted(constraint_id, filepath, line_num, exceptions):
                             violations.append({
                                 "file": filepath,

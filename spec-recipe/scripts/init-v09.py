@@ -134,22 +134,32 @@ def init_metrics(project_root):
         print("  [metrics] .gitignore for runs/ created")
 
 
-def install_pre_commit_hook(project_root):
-    """pre-commit hook을 설치한다."""
-    hook_source = RECIPE_ROOT / "scripts" / "pre-commit"
-    hook_target = project_root / ".git" / "hooks" / "pre-commit"
-
+def install_hooks(project_root):
+    """pre-commit + commit-msg hook을 설치한다."""
     if not (project_root / ".git").exists():
         print("  [hook] .git 디렉토리 없음 — hook 설치 건너뜀")
         return
 
-    if hook_target.exists():
-        print("  [hook] pre-commit hook 이미 존재 — 건너뜀 (수동 업데이트 필요)")
-        return
+    hooks = [
+        ("pre-commit", "pre-commit"),
+        ("commit-msg", "commit-msg"),
+    ]
 
-    shutil.copy2(hook_source, hook_target)
-    os.chmod(hook_target, 0o755)
-    print("  [hook] pre-commit hook 설치 완료")
+    for hook_name, script_name in hooks:
+        hook_source = RECIPE_ROOT / "scripts" / script_name
+        hook_target = project_root / ".git" / "hooks" / hook_name
+
+        if not hook_source.exists():
+            print(f"  [hook] {script_name} 소스 없음 — 건너뜀")
+            continue
+
+        if hook_target.exists():
+            print(f"  [hook] {hook_name} 이미 존재 — 건너뜀 (수동 업데이트 필요)")
+            continue
+
+        shutil.copy2(hook_source, hook_target)
+        os.chmod(hook_target, 0o755)
+        print(f"  [hook] {hook_name} 설치 완료")
 
 
 def copy_scripts(project_root):
@@ -220,7 +230,7 @@ def main():
 
     print("[6/7] 스크립트 복사 + Hook 설치")
     copy_scripts(project_root)
-    install_pre_commit_hook(project_root)
+    install_hooks(project_root)
     print()
 
     print("[7/7] 초기 빌드")

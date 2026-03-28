@@ -22,6 +22,7 @@ if [ ! -d "$SPEC_RECIPE_DIR" ]; then
 fi
 
 echo "spec-recipe: pre-commit 검증 시작..."
+echo "(커밋 메시지 태그 검증은 commit-msg hook에서 수행)"
 echo ""
 
 FAILED=0
@@ -57,8 +58,8 @@ fi
 # 3. Agent 규칙 파일 동기화 검증 (ADR-0004)
 # ============================================================
 if [ -d "$CONSTRAINTS_DIR" ]; then
-    # constraint 해시 계산
-    CONSTRAINT_HASH=$(find "$CONSTRAINTS_DIR" -name "*.yml" -type f | sort | xargs cat 2>/dev/null | sha256sum | cut -c1-8)
+    # constraint 해시 계산 (index.yml 제외 — 빌드 산출물이므로)
+    CONSTRAINT_HASH=$(find "$CONSTRAINTS_DIR" -name "*.yml" -not -name "index.yml" -type f | sort | xargs cat 2>/dev/null | sha256sum | cut -c1-8)
 
     # AGENTS.md 해시 확인
     if [ -f "AGENTS.md" ]; then

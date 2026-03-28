@@ -23,10 +23,12 @@ FEEDBACK_FILE = ".spec-recipe/feedback/current.md"
 
 
 def compute_constraint_hash():
-    """constraints/ 디렉토리 전체의 해시를 계산한다."""
+    """constraints/ 디렉토리 전체의 해시를 계산한다. index.yml은 제외."""
     hasher = hashlib.sha256()
     base = Path(CONSTRAINTS_DIR)
     for yml_file in sorted(base.rglob("*.yml")):
+        if yml_file.name == "index.yml":
+            continue  # index.yml은 빌드 산출물이므로 해시에서 제외
         with open(yml_file, "rb") as f:
             hasher.update(f.read())
     return hasher.hexdigest()[:8]

@@ -65,12 +65,20 @@ def get_staged_files():
 
 
 def get_commit_message():
-    """현재 커밋 메시지를 반환한다 (pre-commit에서는 .git/COMMIT_EDITMSG)."""
-    try:
-        with open(".git/COMMIT_EDITMSG", "r") as f:
-            return f.read().strip()
-    except FileNotFoundError:
-        return ""
+    """현재 커밋 메시지를 반환한다.
+    pre-commit 시점에서는 COMMIT_EDITMSG가 없을 수 있으므로,
+    커밋 메시지 검증은 commit-msg hook에서 수행한다.
+    이 함수는 commit-msg hook에서 인자로 전달된 파일을 읽는다."""
+    # commit-msg hook에서 호출 시: sys.argv에 메시지 파일 경로가 전달됨
+    import sys
+    if len(sys.argv) > 1 and os.path.exists(sys.argv[-1]):
+        try:
+            with open(sys.argv[-1], "r") as f:
+                return f.read().strip()
+        except (IOError, OSError):
+            pass
+    # pre-commit 시점: 커밋 메시지 아직 없음
+    return ""
 
 
 def classify_file(filepath):
