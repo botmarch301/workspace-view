@@ -1,0 +1,20 @@
+id: PRC-SEP-001
+layer: principle
+name: "Phase Separation: 작업 영역 분리"
+severity: block
+scope:
+  files: "**"
+detection:
+  normal:
+    method: script
+    command: "python3 scripts/verify-phase-separation.py"
+remediation: |
+  동일 커밋에 2개 이상 작업 영역의 파일 변경을 포함할 수 없다.
+  - Specification: .spec-recipe/constraints/, spec/0-context/, spec/1-requirements/, decisions/
+  - Design: spec/2-design/, spec/3-plan/
+  - Development: src/, lib/, app/, config/
+  - Testing: tests/, test/, **/*_test.*, **/*_spec.*
+  각 영역의 작업은 독립된 커밋으로 수행한다.
+  커밋 메시지에 영역 태그를 포함한다: [spec], [design], [dev], [test]
+tags: [process, separation]
+ref: "CORE-PRC-001 Section 8, ADR-0007"

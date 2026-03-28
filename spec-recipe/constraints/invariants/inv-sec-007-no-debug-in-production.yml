@@ -1,0 +1,32 @@
+id: INV-SEC-007
+layer: invariant
+name: "디버그 모드 프로덕션 노출 금지"
+severity: halt
+scope:
+  files: "**/*.{py,js,ts,java,yml,yaml,json,toml,env,cfg,ini,conf}"
+  exclude: ["**/test/**", "**/*_test.*", "**/.env.development*", "**/.env.local*"]
+detection:
+  fast:
+    method: regex
+    patterns:
+      - 'DEBUG\s*[=:]\s*[Tt]rue'
+      - 'debug\s*[=:]\s*[Tt]rue'
+      - 'NODE_ENV\s*[=:]\s*["\x27]?development'
+  normal:
+    method: regex
+    patterns:
+      - 'DEBUG\s*[=:]\s*[Tt]rue'
+      - 'debug\s*[=:]\s*[Tt]rue'
+      - 'NODE_ENV\s*[=:]\s*["\x27]?development'
+      - 'FLASK_DEBUG\s*[=:]\s*1'
+      - 'DJANGO_DEBUG\s*[=:]\s*[Tt]rue'
+      - 'app\.debug\s*=\s*True'
+      - 'EnableDetailedErrors.*true'
+      - 'stackTrace.*enabled.*true'
+remediation: |
+  프로덕션 환경에서 디버그 모드는 민감 정보(스택 트레이스, 내부 경로, 변수 값)를 노출한다.
+  - 환경별 설정 파일을 분리한다 (.env.production, .env.development)
+  - 프로덕션 설정에서 DEBUG=False, NODE_ENV=production을 확인한다
+  - CI/CD에서 프로덕션 배포 시 디버그 플래그를 자동 검증한다
+tags: [security, configuration]
+ref: "CWE-215, OWASP-A05:2021"

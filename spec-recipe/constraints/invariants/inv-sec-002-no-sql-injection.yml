@@ -1,0 +1,37 @@
+id: INV-SEC-002
+layer: invariant
+name: "SQL 인젝션 패턴 금지"
+severity: halt
+scope:
+  files: "**/*.{py,js,ts,java,go,rb,php}"
+  exclude: ["**/test/**", "**/*_test.*"]
+detection:
+  fast:
+    method: regex
+    patterns:
+      - 'execute\s*\(\s*["\x27].*%s'
+      - 'execute\s*\(\s*f["\x27]'
+      - 'execute\s*\(\s*["\x27].*\+\s*\w+'
+      - 'query\s*\(\s*["\x27].*\$\{'
+      - '\.format\s*\(.*\).*(?:SELECT|INSERT|UPDATE|DELETE|DROP)'
+  normal:
+    method: regex
+    patterns:
+      - 'execute\s*\(\s*["\x27].*%s'
+      - 'execute\s*\(\s*f["\x27]'
+      - 'execute\s*\(\s*["\x27].*\+\s*\w+'
+      - 'query\s*\(\s*["\x27].*\$\{'
+      - '\.format\s*\(.*\).*(?:SELECT|INSERT|UPDATE|DELETE|DROP)'
+      - 'cursor\.execute\s*\([^,]+%'
+  deep:
+    method: tool
+    tool: "bandit"
+    config: "-t B608"
+remediation: |
+  파라미터화된 쿼리(Parameterized Query)를 사용해야 한다.
+  - Python: cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
+  - Node.js: db.query("SELECT * FROM users WHERE id = $1", [userId])
+  - Java: PreparedStatement를 사용
+  - ORM 사용 권장 (SQLAlchemy, Prisma, JPA 등)
+tags: [security, injection]
+ref: "OWASP-A03:2021"

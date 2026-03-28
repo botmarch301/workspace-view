@@ -1,0 +1,34 @@
+id: INV-SEC-003
+layer: invariant
+name: "eval/exec 사용 금지"
+severity: halt
+scope:
+  files: "**/*.{py,js,ts}"
+  exclude: ["**/test/**", "**/*_test.*"]
+detection:
+  fast:
+    method: regex
+    patterns:
+      - '\beval\s*\('
+      - '\bexec\s*\('
+      - '\bFunction\s*\('
+      - 'new\s+Function\s*\('
+  normal:
+    method: regex
+    patterns:
+      - '\beval\s*\('
+      - '\bexec\s*\('
+      - '\bFunction\s*\('
+      - 'new\s+Function\s*\('
+      - '\bcompile\s*\(.*,\s*["\x27]exec["\x27]'
+  deep:
+    method: tool
+    tool: "bandit"
+    config: "-t B102,B307"
+remediation: |
+  동적 코드 실행은 보안 위험이 극도로 높다.
+  - eval/exec 대신 명시적 로직 분기를 사용한다
+  - 설정 기반 동적 동작이 필요하면 dict dispatch 또는 전략 패턴을 사용한다
+  - 템플릿 엔진이 필요하면 sandboxed 환경(Jinja2 sandbox 등)을 사용한다
+tags: [security, code-execution]
+ref: "CWE-95"

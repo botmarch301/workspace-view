@@ -1,0 +1,39 @@
+id: INV-SEC-004
+layer: invariant
+name: "안전하지 않은 역직렬화 금지"
+severity: halt
+scope:
+  files: "**/*.{py,js,ts,java,rb,php}"
+  exclude: ["**/test/**", "**/*_test.*"]
+detection:
+  fast:
+    method: regex
+    patterns:
+      - '\bpickle\.loads?\s*\('
+      - '\bunpickle\b'
+      - '\byaml\.load\s*\([^)]*(?!Loader)'
+      - '\byaml\.unsafe_load\s*\('
+      - 'ObjectInputStream'
+      - '\bMarshal\.load\s*\('
+  normal:
+    method: regex
+    patterns:
+      - '\bpickle\.loads?\s*\('
+      - '\bunpickle\b'
+      - '\byaml\.load\s*\([^)]*(?!Loader)'
+      - '\byaml\.unsafe_load\s*\('
+      - 'ObjectInputStream'
+      - '\bMarshal\.load\s*\('
+      - '\bshelve\.open\s*\('
+      - '\bjsonpickle\b'
+  deep:
+    method: tool
+    tool: "bandit"
+    config: "-t B301,B302,B403"
+remediation: |
+  신뢰할 수 없는 데이터의 역직렬화는 원격 코드 실행(RCE)으로 이어질 수 있다.
+  - Python: pickle 대신 json 사용. yaml.safe_load() 사용.
+  - Java: ObjectInputStream 대신 JSON/XML 파서 사용.
+  - 역직렬화가 반드시 필요하면 허용 목록(allowlist) 기반 필터링 적용.
+tags: [security, deserialization]
+ref: "CWE-502, OWASP-A08:2021"

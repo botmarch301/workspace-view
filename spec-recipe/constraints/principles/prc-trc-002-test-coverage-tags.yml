@@ -1,0 +1,15 @@
+id: PRC-TRC-002
+layer: principle
+name: "테스트 커버리지 태그 필수"
+severity: block
+scope:
+  files: "{tests,test}/**"
+detection:
+  normal:
+    method: script
+    command: "python3 scripts/verify-traceability.py --check-test-tags"
+remediation: |
+  모든 기능 요구사항(FR)은 Covers: 태그가 있는 테스트를 최소 1개 가져야 한다.
+  테스트는 요구사항의 수용 시나리오(Given/When/Then)에서 도출한다.
+tags: [process, traceability, testing]
+ref: "CORE-PRC-001 Section 4.2"

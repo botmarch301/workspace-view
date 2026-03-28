@@ -1,0 +1,34 @@
+id: INV-SEC-006
+layer: invariant
+name: "과도한 권한 요청 금지"
+severity: halt
+scope:
+  files: "**/*.{yml,yaml,json,tf,hcl,policy}"
+  exclude: ["**/test/**"]
+detection:
+  fast:
+    method: regex
+    patterns:
+      - '"Effect"\s*:\s*"Allow".*"Action"\s*:\s*"\*"'
+      - '"Action"\s*:\s*"\*".*"Resource"\s*:\s*"\*"'
+      - 'chmod\s+777'
+      - 'chmod\s+666'
+  normal:
+    method: regex
+    patterns:
+      - '"Effect"\s*:\s*"Allow".*"Action"\s*:\s*"\*"'
+      - '"Action"\s*:\s*"\*".*"Resource"\s*:\s*"\*"'
+      - 'chmod\s+777'
+      - 'chmod\s+666'
+      - 'AdministratorAccess'
+      - 'arn:aws:iam::.*:policy/AdministratorAccess'
+      - 'privileged:\s*true'
+      - 'runAsUser:\s*0\b'
+remediation: |
+  최소 권한 원칙(Principle of Least Privilege)을 적용해야 한다.
+  - IAM: Action과 Resource를 구체적으로 지정한다 ("s3:GetObject" 등)
+  - 파일 권한: chmod 755(실행), 644(읽기) 이하로 제한
+  - 컨테이너: privileged 모드 금지, root 실행 금지
+  - 와일드카드(*) 권한은 개발 환경에서도 사용하지 않는다
+tags: [security, permissions]
+ref: "CWE-250, OWASP-A01:2021"

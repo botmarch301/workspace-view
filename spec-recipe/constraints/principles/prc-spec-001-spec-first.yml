@@ -1,0 +1,16 @@
+id: PRC-SPEC-001
+layer: principle
+name: "Spec-First: 스펙 없는 기능 구현 금지"
+severity: block
+scope:
+  files: "src/**"
+detection:
+  normal:
+    method: script
+    command: "python3 scripts/verify-traceability.py --check-orphan-code"
+remediation: |
+  코드에서 Implements: 태그가 가리키는 스펙 ID가 실제로 존재해야 한다.
+  스펙에 정의되지 않은 기능을 구현하지 않는다.
+  코드에서 스펙 오류를 발견하면 스펙을 먼저 수정하고 코드를 수정한다.
+tags: [process, spec-first]
+ref: "CORE-PRC-001 Section 1"

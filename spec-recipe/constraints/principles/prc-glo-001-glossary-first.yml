@@ -1,0 +1,16 @@
+id: PRC-GLO-001
+layer: principle
+name: "Glossary-First: 용어집 선행 작성"
+severity: block
+scope:
+  files: "spec/**"
+detection:
+  normal:
+    method: script
+    command: "python3 scripts/verify-structure.py --check-glossary"
+remediation: |
+  프로젝트 시작 시 0-context/glossary.md를 가장 먼저 작성해야 한다.
+  모든 문서와 코드는 용어집에 정의된 용어를 사용한다.
+  Enum과 공통 상수는 스펙에서 선행 정의한다.
+tags: [process, glossary]
+ref: "CORE-PRC-001 Section 5"

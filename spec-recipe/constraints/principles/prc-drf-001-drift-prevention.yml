@@ -1,0 +1,20 @@
+id: PRC-DRF-001
+layer: principle
+name: "Drift Prevention: 스펙-코드 동기화"
+severity: block
+scope:
+  files: "{src,spec}/**"
+detection:
+  normal:
+    method: script
+    command: "python3 scripts/verify_contracts.py --check-drift"
+remediation: |
+  다음 항목이 변경되면 관련 스펙을 반드시 함께 갱신해야 한다.
+  - API 경로 (URL, HTTP Method)
+  - Request/Response 필드명 또는 타입
+  - Enum/Constant 값
+  - DB 컬럼
+  - 인증/인가 정책
+  - 공개 인터페이스 시그니처
+tags: [process, drift]
+ref: "CORE-PRC-001 Section 6"

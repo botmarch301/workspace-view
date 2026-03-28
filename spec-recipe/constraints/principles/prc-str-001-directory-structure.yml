@@ -1,0 +1,20 @@
+id: PRC-STR-001
+layer: principle
+name: "디렉토리 구조 표준 준수"
+severity: block
+scope:
+  files: "spec/**"
+detection:
+  normal:
+    method: script
+    command: "python3 scripts/verify-structure.py"
+remediation: |
+  스펙 디렉토리는 표준 구조를 준수해야 한다.
+  - 0-context/ (용어집, 배경)
+  - 1-requirements/ (요구사항)
+  - 2-design/ (설계)
+  - 3-plan/ (계획)
+  - 4-manual/ (규칙, 가이드)
+  파일명은 kebab-case, 깊이 3단계 이내, 디렉토리당 15개 이내.
+tags: [process, structure]
+ref: "CORE-PRC-001 Section 3"

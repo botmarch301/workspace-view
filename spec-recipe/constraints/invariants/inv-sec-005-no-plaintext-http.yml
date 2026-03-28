@@ -1,0 +1,27 @@
+id: INV-SEC-005
+layer: invariant
+name: "평문 HTTP 엔드포인트 금지"
+severity: halt
+scope:
+  files: "**/*.{py,js,ts,java,go,yml,yaml,json,toml,env,cfg,ini,conf}"
+  exclude: ["**/test/**", "**/*_test.*", "**/localhost*"]
+detection:
+  fast:
+    method: regex
+    patterns:
+      - 'http://(?!localhost|127\.0\.0\.1|0\.0\.0\.0|::1)'
+  normal:
+    method: regex
+    patterns:
+      - 'http://(?!localhost|127\.0\.0\.1|0\.0\.0\.0|::1|\[::1\])'
+      - 'SECURE\s*[=:]\s*[Ff]alse'
+      - 'SSL\s*[=:]\s*[Ff]alse'
+      - 'TLS\s*[=:]\s*[Ff]alse'
+      - 'verify\s*[=:]\s*[Ff]alse'
+remediation: |
+  외부 통신은 반드시 HTTPS를 사용해야 한다.
+  - 모든 외부 URL을 https://로 변경한다
+  - SSL/TLS 검증을 비활성화하지 않는다 (verify=False 금지)
+  - 로컬 개발 환경(localhost, 127.0.0.1)은 예외로 허용된다
+tags: [security, transport]
+ref: "OWASP-A02:2021"
