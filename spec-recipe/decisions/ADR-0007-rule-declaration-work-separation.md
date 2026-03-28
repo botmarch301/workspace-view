@@ -20,29 +20,46 @@ ADR-0003에서 "예외는 룰 레벨에서 관리하며, 개발 중에 임의로
 
 **스펙/룰/제약의 선언과 설계/개발/테스트의 실행은 반드시 분리한다.**
 
-### 2.1 분리 대상
+### 2.1 분리 대상: 3개 작업 영역
 
-| 선언 작업 (Rule Declaration) | 실행 작업 (Development/Test) |
-|------------------------------|------------------------------|
-| constraint 정의/수정 | 소스 코드 작성/수정 |
-| 예외 등록/수정 | 테스트 작성/수정 |
-| 스펙 문서 작성/수정 | 리팩토링 |
-| ADR 작성 | 설정 파일 수정 |
-| build (agent 규칙 생성) | 빌드/배포 |
+| 선언 작업 (Declaration) | 개발 작업 (Development) | 테스트 작업 (Testing) |
+|------------------------|----------------------|---------------------|
+| constraint 정의/수정 | 소스 코드 작성/수정 | 테스트 코드 작성/수정 |
+| 예외 등록/수정 | 리팩토링 | 테스트 실행/결과 분석 |
+| 스펙 문서 작성/수정 | 설정 파일 수정 | 커버리지 분석 |
+| ADR 작성 | 빌드/배포 | 뮤테이션 테스트 |
+| build (agent 규칙 생성) | | |
+
+**3자 분리 원칙:**
+- 선언(Declaration)과 개발(Development)은 분리 → 개발 중 룰 임의 변경 차단
+- 개발(Development)과 테스트(Testing)는 분리 → 구현자가 자기 코드에 맞춰 테스트를 왜곡하는 것 차단
+- 선언(Declaration)과 테스트(Testing)는 분리 → 테스트 결과에 맞춰 스펙/룰을 후행 수정하는 것 차단
+
+이것은 기존 원칙 7(Verification Separation: 구현 주체 ≠ 검증 주체)의 확장이다. Verification Separation이 "누가"의 분리라면, Declaration-Execution Separation은 "언제/무엇을"의 분리다.
 
 ### 2.2 강제 메커니즘
 
-1. **커밋 분리**: constraint/spec 변경과 src/test 변경이 같은 커밋에 포함되면 pre-commit에서 차단.
+1. **커밋 분리**: 3개 경로 그룹의 동시 변경을 금지한다. pre-commit에서 차단.
 
    ```
-   # 차단 규칙: 다음 경로 그룹의 동시 변경을 금지
-   rule_paths: [".spec-recipe/constraints/", "spec/", ".spec-recipe/feedback/"]
-   work_paths: ["src/", "tests/", "lib/", "app/"]
+   # 3개 경로 그룹 — 같은 커밋에 2개 이상 그룹의 변경이 포함되면 차단
+   declaration_paths: [".spec-recipe/constraints/", "spec/", ".spec-recipe/feedback/", "decisions/"]
+   development_paths: ["src/", "lib/", "app/", "config/"]
+   testing_paths:     ["tests/", "test/", "**/*_test.*", "**/*_spec.*"]
    ```
 
-2. **세션 분리 권고**: AI agent 환경에서는 룰 선언 세션과 개발 세션을 분리하는 것을 권고한다. 동일 세션에서 수행하더라도 커밋 분리는 강제된다.
+   | 조합 | 허용 여부 | 사유 |
+   |------|----------|------|
+   | declaration + development | 차단 | 개발 중 룰 변경 방지 |
+   | declaration + testing | 차단 | 테스트 결과에 맞춰 스펙 수정 방지 |
+   | development + testing | 차단 | 구현과 테스트의 독립성 보장 |
+   | declaration만 | 허용 | 룰/스펙 선언 작업 |
+   | development만 | 허용 | 개발 작업 |
+   | testing만 | 허용 | 테스트 작업 |
 
-3. **Phase Gate 확인**: 각 phase gate에서 "직전 단계에서 룰/스펙 변경이 있었는가? 있었다면 별도 커밋으로 분리되었는가?" 확인.
+2. **세션 분리 권고**: AI agent 환경에서는 선언 세션, 개발 세션, 테스트 세션을 분리하는 것을 권고한다. 동일 세션에서 수행하더라도 커밋 분리는 강제된다.
+
+3. **Phase Gate 확인**: 각 phase gate에서 "직전 단계에서 어떤 작업 영역의 변경이 있었는가? 커밋이 영역별로 분리되었는가?" 확인.
 
 ### 2.3 예외
 
@@ -60,6 +77,7 @@ ADR-0003에서 "예외는 룰 레벨에서 관리하며, 개발 중에 임의로
 - **Positive**: 룰의 안정성 보장, 변경 이력 명확, agent의 룰 임의 조작 차단
 - **Negative**: 커밋 분리 마찰 (하지만 품질 보장에 필수적인 비용)
 - **Follow-up**:
-  - pre-commit hook에 경로 그룹 동시 변경 차단 로직 추가
+  - pre-commit hook에 3개 경로 그룹 동시 변경 차단 로직 추가
   - processes.md에 "작업 분리 원칙" 섹션 추가
-  - principles.md에 8번째 원칙으로 "Declaration-Execution Separation" 추가
+  - principles.md에 8번째 원칙으로 "Declaration-Development-Testing Separation" 추가
+  - 기존 원칙 7(Verification Separation)과의 관계 명시: 7은 "주체 분리", 8은 "작업 분리"
