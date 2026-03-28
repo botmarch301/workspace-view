@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+# spec-recipe pre-commit hook [Kitchen-only]
+# 설치: cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+# 또는: spec-recipe init에서 자동 설치
+#
+# 검증 순서:
+# 1. Phase Separation (ADR-0007) — 4개 영역 동시 변경 차단
+# 2. Constraint 검증 (ADR-0002) — HALT/BLOCK
+# 3. Agent 규칙 파일 동기화 (ADR-0004) — constraint hash 비교
+# 4. 기존 검증 (structure, traceability) — 하위 호환
+
+set -e
+
+SPEC_RECIPE_DIR=".spec-recipe"
+CONSTRAINTS_DIR="$SPEC_RECIPE_DIR/constraints"
+SCRIPTS_DIR="scripts"
+
+# spec-recipe가 초기화되어 있는지 확인
+if [ ! -d "$SPEC_RECIPE_DIR" ]; then
+    # spec-recipe 미설치 — 기존 검증만 실행
+    exit 0
+fi
+
+echo "spec-recipe: pre-commit 검증 시작..."
+echo ""
+
+FAILED=0
+
+# ============================================================
+# 1. Phase Separation 검증
+# ============================================================
+if [ -f "$SCRIPTS_DIR/verify-phase-separation.py" ]; then
+    if ! python3 "$SCRIPTS_DIR/verify-phase-separation.py"; then
+        FAILED=1
+    fi
+fi
+
+# Phase Separation 실패 시 즉시 중단 (다른 검증 불필요)
+if [ $FAILED -ne 0 ]; then
+    exit 1
+fi
+
+# ============================================================
+# 2. Constraint 검증 (HALT/BLOCK)
+# ============================================================
+if [ -d "$CONSTRAINTS_DIR" ] && [ -f "$SCRIPTS_DIR/verify-constraints.py" ]; then
+    if ! python3 "$SCRIPTS_DIR/verify-constraints.py"; then
+        FAILED=1
+    fi
+fi
+
+if [ $FAILED -ne 0 ]; then
+    exit 1
+fi
+
+# ============================================================
+# 3. Agent 규칙 파일 동기화 검증 (ADR-0004)
+# ============================================================
+if [ -d "$CONSTRAINTS_DIR" ]; then
+    # constraint 해시 계산
+    CONSTRAINT_HASH=$(find "$CONSTRAINTS_DIR" -name "*.yml" -type f | sort | xargs cat 2>/dev/null | sha256sum | cut -c1-8)
+
+    # AGENTS.md 해시 확인
+    if [ -f "AGENTS.md" ]; then
+        AGENTS_HASH=$(grep -oP 'spec-recipe:constraint-hash:\K[a-f0-9]+' AGENTS.md 2>/dev/null || echo "none")
+        if [ "$CONSTRAINT_HASH" != "$AGENTS_HASH" ]; then
+            echo "============================================================"
+            echo "BLOCK: AGENTS.md가 constraint와 동기화되지 않았습니다."
+            echo "============================================================"
+            echo "  constraint hash: $CONSTRAINT_HASH"
+            echo "  AGENTS.md hash:  $AGENTS_HASH"
+            echo ""
+            echo "  실행: python3 scripts/build-agent-rules.py"
+            echo "============================================================"
+            FAILED=1
+        fi
+    fi
+
+    # CLAUDE.md 해시 확인
+    if [ -f "CLAUDE.md" ]; then
+        CLAUDE_HASH=$(grep -oP 'spec-recipe:constraint-hash:\K[a-f0-9]+' CLAUDE.md 2>/dev/null || echo "none")
+        if [ "$CONSTRAINT_HASH" != "$CLAUDE_HASH" ]; then
+            echo "============================================================"
+            echo "BLOCK: CLAUDE.md가 constraint와 동기화되지 않았습니다."
+            echo "============================================================"
+            echo "  constraint hash: $CONSTRAINT_HASH"
+            echo "  CLAUDE.md hash:  $CLAUDE_HASH"
+            echo ""
+            echo "  실행: python3 scripts/build-agent-rules.py"
+            echo "============================================================"
+            FAILED=1
+        fi
+    fi
+fi
+
+if [ $FAILED -ne 0 ]; then
+    exit 1
+fi
+
+# ============================================================
+# 4. 기존 검증 (하위 호환)
+# ============================================================
+
+# Structure 검증 (있으면 실행)
+if [ -f "$SCRIPTS_DIR/verify-structure.py" ]; then
+    echo "spec-recipe: 구조 검증..."
+    python3 "$SCRIPTS_DIR/verify-structure.py" --mode pre-commit 2>/dev/null || true
+fi
+
+# Traceability 검증 (있으면 실행)
+if [ -f "$SCRIPTS_DIR/verify-traceability.py" ]; then
+    echo "spec-recipe: 추적성 검증..."
+    python3 "$SCRIPTS_DIR/verify-traceability.py" --mode pre-commit 2>/dev/null || true
+fi
+
+echo ""
+echo "spec-recipe: 모든 검증 통과."
+exit 0
