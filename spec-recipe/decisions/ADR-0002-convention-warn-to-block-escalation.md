@@ -1,65 +1,82 @@
-# ADR-0002: Convention WARN → BLOCK 승격 임계값
+# ADR-0002: Convention의 위반 대응 수준 재정의
 
 > **ID**: ADR-0002
-> **Status**: Proposed
+> **Status**: Accepted
 > **Date**: 2026-03-28
 > **Deciders**: Mingi
-> **Implies**: v0.9.0 제약 체계 (constraints/)
+> **Implies**: v0.9.0 제약 체계 (constraints/), 3계층 제약 모델 재정의
 
 ## 1. 맥락 및 문제 정의
 
-3계층 제약 모델(Invariant/Principle/Convention)에서 Convention 위반은 WARN으로 처리되어 커밋이 허용된다. 그러나 동일한 Convention 위반이 반복되면, 그것은 "무시되는 규칙"이 되어 Convention 체계 자체의 신뢰를 떨어뜨린다.
+초기 설계안에서 3계층 제약 모델을 다음과 같이 정의했다:
 
-반복된 WARN을 방치하면:
-1. agent가 "WARN은 무시해도 된다"는 패턴을 학습
-2. Convention이 사실상 무력화
-3. 코드베이스 품질이 점진적으로 하락
+| 계층 | 위반 대응 | 유예 |
+|------|----------|------|
+| Invariant | HALT (즉시 중단) | 불가 |
+| Principle | BLOCK (커밋 차단) | Milestone 유예 |
+| Convention | WARN (경고, 커밋 허용) | 자유 |
 
-반면 너무 빨리 BLOCK으로 승격하면:
-1. 소규모 프로젝트에서 과도한 제약
-2. 리팩토링 중간 단계에서 불필요한 차단
-3. 개발 속도 저하
+Convention을 WARN으로 처리하고 "반복 시 BLOCK 승격"하는 방식을 고려했으나, 근본적인 문제가 있다.
+
+**AI agent는 세션 간 기억이 없다.**
+
+사람은 "지난번에 경고받았으니 이번에는 지키자"라고 판단할 수 있다. 하지만 AI agent의 매 세션은 독립적이다. 이전 세션에서 WARN을 100번 받았어도 다음 세션에서는 동일한 위반을 반복한다. WARN 기반 승격 메커니즘은 **agent 환경에서 구조적으로 작동하지 않는다.**
+
+또한, 개발 가이드, 정적 분석 결과, 테스트는 "지키면 좋은 것"이 아니라 **필수 조건**이다. Invariant(보안 등 절대 규칙)에 해당하지 않는 모든 제약도 준수해야 할 대상이다.
 
 ## 2. 고려된 대안
 
-### 2.1 대안 1: 고정 임계값 3회
-- **Pros**: 단순, 예측 가능
-- **Cons**: 프로젝트 규모/성격에 무관하게 일률 적용
+### 2.1 대안 1: 기존 방식 유지 (WARN + 반복 시 BLOCK 승격)
+- **Pros**: 유연, 점진적 적응
+- **Cons**: agent 환경에서 구조적으로 무효. 세션 간 기억 없음.
 
-### 2.2 대안 2: 고정 임계값 5회
-- **Pros**: 더 관대, 리팩토링 여유
-- **Cons**: 5회 반복이면 이미 습관화된 위반
+### 2.2 대안 2: Convention도 BLOCK으로 통일
+Invariant를 제외한 모든 제약(Principle + Convention)을 BLOCK(커밋 차단)으로 처리한다.
+- **Pros**: 모든 규칙이 강제됨, agent 세션 독립성에 영향받지 않음
+- **Cons**: Convention과 Principle의 구분 의미가 약해짐
 
-### 2.3 대안 3: 사용자 설정 가능, 기본값 3회
-- **Pros**: 프로젝트별 맞춤, maturity profile과 연동 가능
-- **Cons**: 설정 항목 하나 더 추가
+### 2.3 대안 3: 2계층으로 단순화 (Invariant + Enforced)
+Convention과 Principle을 하나의 계층(Enforced)으로 합치고, Invariant와 Enforced 2계층으로 단순화한다.
+- **Pros**: 구조 단순, "HALT vs BLOCK" 2단계만 관리
+- **Cons**: 원칙(아키텍처 수준)과 컨벤션(코드 스타일)의 우선순위 구분 소실
 
 ## 3. 결정
 
-**대안 3: 사용자 설정 가능, 기본값 3회**를 선택한다.
+**대안 2: Convention도 BLOCK으로 통일**을 선택한다. 단, 3계층 구조는 유지한다.
 
 ### 3.1 결정의 근거
 
-1. spec-recipe의 maturity profile(basic/intermediate/advanced)에 따라 다른 기본값을 제공하면 점진적 도입이 자연스럽다
-   - basic: 5회 (관대)
-   - intermediate: 3회 (기본)
-   - advanced: 2회 (엄격)
-2. 사용자가 개별 Convention별로 임계값을 재정의할 수 있으면 유연성 확보
-3. 승격 시 feedback에 "WARN→BLOCK 승격 사유: 동일 위반 N회 반복" 기록으로 투명성 확보
+1. **AI agent 환경의 현실**: agent는 경고를 기억하지 못한다. 강제하지 않으면 준수되지 않는다.
+2. **"지켜야 할 것은 지켜야 한다"**: Convention이든 Principle이든, 정의된 규칙은 필수다. 선택적 규칙이라면 애초에 정의하지 않는 것이 맞다.
+3. **3계층 유지 이유**: 계층은 **위반 시 대응 강도**가 아닌 **규칙의 성격과 관리 주체**를 구분하는 데 사용한다.
 
-### 3.2 설정 형식
+### 3.2 재정의된 3계층 모델
 
-```yaml
-# .spec-recipe/verification-config.yml
-convention_escalation:
-  default_threshold: 3        # 기본 임계값
-  per_convention:              # 개별 재정의 (선택)
-    CONV-STYLE-001: 5          # 이 컨벤션은 5회까지 허용
-  reset_on: "milestone"        # 카운터 리셋 시점: milestone | sprint | never
-```
+| 계층 | 성격 | 관리 주체 | 위반 대응 | 유예 |
+|------|------|----------|----------|------|
+| Invariant | 보안, 데이터 보호 등 절대 규칙 | spec-recipe 코어 제공 | **HALT** (즉시 중단, 전체 커밋 차단) | 불가 (예외 선언만 가능, ADR-0003) |
+| Principle | 아키텍처, 추적성, SoC 등 코어 원칙 | spec-recipe 코어 제공 | **BLOCK** (해당 파일 커밋 차단) | Phase gate에서 이슈 등록 후 유예 가능 |
+| Convention | 네이밍, 스타일, 커밋 메시지 등 프로젝트별 규칙 | 사용자 정의 | **BLOCK** (해당 파일 커밋 차단) | Phase gate에서 이슈 등록 후 유예 가능 |
+
+**차이점 정리:**
+- Invariant: HALT. 미해결 시 **모든** 커밋 차단. 예외는 ADR-0003 절차만 가능.
+- Principle/Convention: BLOCK. **해당 파일** 커밋 차단. phase gate에서 이슈로 등록하면 유예 가능.
+- WARN은 더 이상 위반 대응으로 사용하지 않는다. 모든 규칙은 강제된다.
+
+### 3.3 유예 메커니즘
+
+"Convention도 BLOCK"이 과도한 경우를 대비한 안전장치:
+
+- 규칙을 정의했다면 지켜야 한다. 지킬 수 없는 규칙이라면 **규칙 자체를 수정하거나 삭제**한다.
+- 일시적으로 지킬 수 없는 상황(리팩토링 중 등)이면, phase gate에서 이슈로 등록하고 유예 기한을 설정한다.
+- 유예된 이슈는 다음 phase gate에서 반드시 재확인한다.
 
 ## 4. 영향
 
-- **Positive**: Convention 체계의 실효성 유지, 프로젝트별 맞춤 가능
-- **Negative**: 설정 복잡도 약간 증가
-- **Follow-up**: constraint YAML 스키마에 escalation 필드 추가, metrics에 승격 이력 추적
+- **Positive**: 모든 규칙이 실제로 강제됨, agent 세션 독립성 문제 해결, "선택적 규칙"이라는 모순 제거
+- **Negative**: 초기 도입 시 마찰 가능 (불필요한 convention을 정의하면 즉시 차단됨)
+- **Follow-up**: 
+  - 설계안에서 WARN 관련 내용 전면 삭제
+  - "WARN→BLOCK 승격 임계값" 미결 사항 폐기 (더 이상 불필요)
+  - Convention 정의 가이드에 "정의하면 강제된다. 강제하지 않을 규칙은 정의하지 마라" 명시
+  - maturity profile의 역할 재정의: 위반 대응 강도 조절이 아닌, 검증 범위(depth) 조절로 변경
