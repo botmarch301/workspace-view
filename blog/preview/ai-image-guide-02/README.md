@@ -8,6 +8,12 @@
 
 1화에서 txt2img의 한계를 확인했다. 프롬프트만으로는 원하는 포즈를 잡을 수 없다. "팔을 들어올린 여성"이라고 써도, 모델이 해석하는 방법은 수십 가지다. 팔이 어디에 있는지, 몸이 어느 방향을 향하는지, 카메라 앵글은 어떤지 — 전부 운에 맡기게 된다.
 
+아래는 같은 프롬프트로 ControlNet 없이 생성한 결과(왼쪽)와, 참조 포즈를 OpenPose ControlNet으로 제어한 결과(오른쪽)의 차이다.
+
+| txt2img (ControlNet 없음) | 참조 사진 | OpenPose 결과 |
+|:---:|:---:|:---:|
+| ![txt2img](../images/02/result_txt2img.png) | ![reference](../images/02/reference.jpg) | ![openpose](../images/02/result_openpose.png) |
+
 ControlNet은 이 문제를 해결한다. 참조 이미지에서 포즈, 윤곽선, 깊이 정보를 추출하고, 그 구조를 유지한 채 새로운 이미지를 생성한다. 프롬프트가 "무엇을"이라면, ControlNet은 "어떻게"를 지정하는 도구다.
 
 
@@ -118,6 +124,10 @@ ComfyUI를 재시작하면 OpenPose, Canny, Depth 등의 전처리 노드가 추
 
 OpenPose 전처리기를 거치면 참조 이미지가 검은 배경 위의 스틱피겨(관절 연결선)로 변환된다. 이 포즈맵이 생성의 뼈대가 된다.
 
+| 참조 사진 | 추출된 포즈맵 |
+|:---:|:---:|
+| ![reference](../images/02/reference.jpg) | ![posemap](../images/02/map_openpose.png) |
+
 포즈맵을 **반드시 먼저 확인**해야 한다. 관절이 잘못 잡히면 결과도 이상해진다. 팔꿈치가 반대로 꺾이거나, 목이 비현실적으로 긴 포즈맵이 나오면 참조 이미지를 바꿔야 한다.
 
 ComfyUI에서는 OpenPose 전처리기 노드의 출력을 Preview Image 노드에 연결하면 포즈맵을 바로 볼 수 있다.
@@ -135,6 +145,12 @@ ControlNet의 영향력을 조절하는 값이다. Apply ControlNet 노드의 `s
 
 1.0에서 시작하고, 포즈가 너무 딱딱하면 0.8로 내리고, 느슨하면 1.2까지 올려본다. 1.5를 넘기면 포즈맵의 선이 결과물에 그대로 묻어나오는 현상이 나타날 수 있다.
 
+| Strength 0.5 | Strength 1.0 | Strength 1.5 |
+|:---:|:---:|:---:|
+| ![s05](../images/02/cmp_strength_05.png) | ![s10](../images/02/cmp_strength_10.png) | ![s15](../images/02/cmp_strength_15.png) |
+
+같은 포즈맵, 같은 시드, 같은 프롬프트에서 strength만 변경한 결과다. 0.5에서는 포즈의 영향이 약하고, 1.0에서는 참조 포즈를 충실하게 따르며, 1.5에서는 포즈에 과도하게 종속된다.
+
 ### Start/End Percent
 
 ControlNet이 디노이징 과정에서 개입하는 구간을 지정한다.
@@ -149,6 +165,12 @@ ControlNet이 디노이징 과정에서 개입하는 구간을 지정한다.
 | 0.0 | 0.5 | 대략적인 구조만 잡고, 나머지는 모델이 자유롭게 생성한다. |
 
 **0.0~0.8**을 권장한다. 마지막 구간에서 ControlNet을 풀어주면 의상이나 머리카락 같은 세부 디테일이 더 자연스럽게 나온다. 전 구간(0.0~1.0) 적용은 포즈가 정확하지만 약간 경직된 느낌을 줄 수 있다.
+
+| End 0.5 | End 0.8 | End 1.0 |
+|:---:|:---:|:---:|
+| ![e05](../images/02/cmp_endpct_05.png) | ![e08](../images/02/cmp_endpct_08.png) | ![e10](../images/02/cmp_endpct_10.png) |
+
+같은 조건에서 end_percent만 변경한 결과다. 0.5에서는 후반부가 자유로워지고, 0.8과 1.0은 유사하지만 세부 디테일에서 차이가 나타난다.
 
 
 ## Canny: 윤곽선 제어
@@ -199,6 +221,16 @@ Depth는 OpenPose와 Canny의 중간 지점이다. 전체적인 공간 배치를
 | Canny | 윤곽선 전체 | 높음 | 형태 유지, 스타일 변환 |
 | Depth | 깊이/원근 정보 | 중간 | 구도와 공간감 제어 |
 
+같은 참조 이미지에 세 ControlNet을 각각 적용한 결과:
+
+| 참조 사진 | OpenPose | Canny | Depth |
+|:---:|:---:|:---:|:---:|
+| ![ref](../images/02/reference.jpg) | ![openpose](../images/02/result_openpose.png) | ![canny](../images/02/result_canny.png) | ![depth](../images/02/result_depth.png) |
+
+| | OpenPose 맵 | Canny 맵 | Depth 맵 |
+|:---:|:---:|:---:|:---:|
+| 전처리 결과 | ![map_op](../images/02/map_openpose.png) | ![map_ca](../images/02/map_canny.png) | ![map_de](../images/02/map_depth.png) |
+
 실제 작업에서는 하나만 쓰기보다 **조합**하는 경우가 많다. OpenPose로 포즈를 잡고, Depth로 공간감을 보정하는 식이다. ComfyUI에서는 Apply ControlNet 노드를 직렬로 연결해서 여러 ControlNet을 동시에 적용할 수 있다.
 
 
@@ -224,6 +256,37 @@ Depth는 OpenPose와 Canny의 중간 지점이다. 전체적인 공간 배치를
 
 스마트폰으로 원하는 포즈를 직접 찍는다. 가장 정확하다. 배경은 단순하게, 관절이 가려지지 않게 주의한다.
 
+
+## 삽질 기록
+
+### 참조 이미지 선택의 중요성
+
+처음에 초상화(얼굴 클로즈업) 사진을 참조 이미지로 썼다. OpenPose가 전신 스켈레톤을 추출했는데, 생성 결과는 얼굴만 나왔다. 참조 이미지의 프레임과 생성 이미지의 프레임이 일치하지 않으면, 포즈맵이 정확해도 결과가 어긋난다.
+
+전신 포즈를 제어하려면 전신 사진을, 얼굴 각도를 제어하려면 얼굴 사진을 참조로 써야 한다.
+
+### Strength/End Percent 비교 시 포즈맵 재사용
+
+처음에 각 생성마다 전처리기를 다시 실행하는 워크플로를 구성했다. 같은 이미지를 넣었는데 결과가 달랐다. 원인은 전처리기의 비결정론적 동작이었다 — OpenPose 전처리기가 실행할 때마다 관절 위치를 미세하게 다르게 추출한다.
+
+해결 방법: 포즈맵을 한 번 추출해서 이미지로 저장한 뒤, 이후 생성에서는 저장된 포즈맵을 직접 로드해서 사용한다. 전처리기를 건너뛰고 포즈맵 이미지를 ControlNet에 바로 연결하면 된다.
+
+```
+[잘못된 방식]
+참조 이미지 → [OpenPose 전처리기] → [ControlNet] (매번 다른 포즈맵)
+
+[올바른 방식]
+참조 이미지 → [OpenPose 전처리기] → [저장]
+저장된 포즈맵 → [ControlNet] (항상 같은 포즈맵)
+```
+
+파라미터 비교 실험을 할 때는 반드시 이 방식을 써야 한다. 그렇지 않으면 변경한 파라미터 때문에 결과가 달라진 건지, 포즈맵이 달라서 결과가 달라진 건지 구분할 수 없다.
+
+### SD 1.5 ControlNet 모델은 .pth 형식
+
+lllyasviel/ControlNet-v1-1 저장소의 SD 1.5용 모델은 `.safetensors`가 아니라 `.pth` 형식이다. `.safetensors`로 검색하면 404가 나온다. ComfyUI는 `.pth`도 정상적으로 로드한다.
+
+---
 
 ## 정리
 
