@@ -145,11 +145,11 @@ ControlNet의 영향력을 조절하는 값이다. Apply ControlNet 노드의 `s
 
 1.0에서 시작하고, 포즈가 너무 딱딱하면 0.8로 내리고, 느슨하면 1.2까지 올려본다. 1.5를 넘기면 포즈맵의 선이 결과물에 그대로 묻어나오는 현상이 나타날 수 있다.
 
-| Strength 0.3 | Strength 1.0 | Strength 1.8 |
-|:---:|:---:|:---:|
-| ![s03](images/cmp_strength_03.png) | ![s10](images/cmp_strength_10.png) | ![s18](images/cmp_strength_18.png) |
+| Strength 0.3 | Strength 1.0 | Strength 1.5 | Strength 1.8 |
+|:---:|:---:|:---:|:---:|
+| ![s03](images/cmp_strength_03.png) | ![s10](images/cmp_strength_10.png) | ![s15](images/cmp_strength_15.png) | ![s18](images/cmp_strength_18.png) |
 
-같은 포즈맵, 같은 시드, 같은 프롬프트에서 strength만 변경한 결과다. 0.3에서는 포즈의 영향이 느슨하고, 1.0에서는 참조 포즈를 충실하게 따르며, 1.8에서는 과도하게 종속되면서 바닥 패턴 같은 아티팩트가 나타나기 시작한다.
+같은 포즈맵, 같은 시드, 같은 프롬프트에서 strength만 변경한 결과다. 0.3에서는 포즈의 영향이 느슨하고, 1.0에서는 참조 포즈를 충실하게 따른다. 1.5부터 아티팩트가 나타나기 시작하고, 1.8에서는 바닥에 부자연스러운 패턴이 생기거나 눈 주변에 얼룩이 나타나는 등 과도한 종속의 흔적이 보인다.
 
 비교 이미지를 만들 때 주의할 점이 있다. `euler_ancestral` 같은 확률적 샘플러를 쓰면, strength가 달라질 때 생성 과정 전체가 바뀌어서 캐릭터 외형까지 달라진다. 파라미터 비교 실험에는 `euler` 같은 결정론적 샘플러를 쓰는 것이 낫다.
 
