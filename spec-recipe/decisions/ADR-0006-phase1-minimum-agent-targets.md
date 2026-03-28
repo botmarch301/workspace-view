@@ -1,7 +1,7 @@
 # ADR-0006: Phase 1 최소 Agent 타겟 범위
 
 > **ID**: ADR-0006
-> **Status**: Proposed
+> **Status**: Accepted
 > **Date**: 2026-03-28
 > **Deciders**: Mingi
 > **Implies**: v0.9.0 build.py 확장

@@ -1,7 +1,7 @@
 # ADR-0004: Agent 규칙 파일 자동 재생성 트리거 방식
 
 > **ID**: ADR-0004
-> **Status**: Proposed
+> **Status**: Accepted
 > **Date**: 2026-03-28
 > **Deciders**: Mingi
 > **Implies**: v0.9.0 Agent 주입 파이프라인

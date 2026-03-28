@@ -1,7 +1,7 @@
 # ADR-0005: Metrics 데이터의 Git 추적 여부
 
 > **ID**: ADR-0005
-> **Status**: Proposed
+> **Status**: Accepted
 > **Date**: 2026-03-28
 > **Deciders**: Mingi
 > **Implies**: v0.9.0 측정 내장 (metrics/)
