@@ -160,11 +160,19 @@ def matches_scope(filepath, scope):
     for exc_pattern in expanded_exclude:
         if fp.match(exc_pattern):
             return False
+        # Python < 3.13: **/*.ext 는 루트 파일에 매치 안됨
+        if exc_pattern.startswith("**/"):
+            if fp.match(exc_pattern[3:]):
+                return False
 
     # files 패턴 확인
     for pattern in expanded_patterns:
         if fp.match(pattern):
             return True
+        # Python < 3.13: **/*.ext 는 루트 파일에 매치 안됨
+        if pattern.startswith("**/"):
+            if fp.match(pattern[3:]):
+                return True
 
     return False
 
