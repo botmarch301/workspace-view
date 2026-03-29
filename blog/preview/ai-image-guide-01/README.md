@@ -229,15 +229,15 @@ mutated hands, extra limbs, cloned face
 
 **손가락이 이상한 결과:**
 
-> **Positive**: young woman, black hair, showing both hands, waving, casual outfit, upper body, photo, realistic
+> **Positive**: young woman, counting fingers, holding up both hands, spread fingers, ten fingers visible, photo, realistic
 >
-> **Negative**: ugly, deformed, bad anatomy, bad hands, missing fingers, extra fingers, blurry, low quality, worst quality, watermark, text, signature
+> **Negative**: ugly, deformed, blurry, low quality, worst quality, watermark, text, signature
 >
-> **설정**: Realistic Vision V5.1 | 512x768 | DPM++ SDE Karras | Steps 20 | CFG 7.0 | Seed 123
+> **설정**: Realistic Vision V5.1 | 512x768 | DPM++ SDE Karras | Steps 20 | CFG 7.0 | Seed 88
 
 ![손가락 이상 결과](images/09_default_bad_hands.png)
 
-손을 보여달라고 하면 거의 확실하게 문제가 생긴다. 손가락 개수, 관절 방향, 손바닥 구조가 뒤틀린다. SD 1.5의 고질적 문제다.
+"열 손가락을 보여달라"고 했더니 손이 4개가 나왔다. 손가락 개수도 맞지 않고, 있을 수 없는 위치에서 손가락이 자라난다. 복잡한 손 포즈를 요구할수록 문제가 극적으로 드러난다. SD 1.5의 고질적 문제다.
 
 **잘 되는 것:**
 - 전체적인 분위기와 구도
